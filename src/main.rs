@@ -3,14 +3,18 @@ use std::process::{Command, Stdio};
 
 mod args;
 
+/// if the user has specified a target, then print the list of installed targets that match the user's
+/// target
 fn main() {
     let args = args::Args::parse();
 
-    if args.target != None {
+    if args.target.is_some() {
         // let target = args.target.unwrap();
 
         let target_list = Command::new("rustup")
-            .args(["target", "list"])
+            // .args(["target", "list"])
+            .arg("target")
+            .arg("list")
             .stdout(Stdio::piped())
             .spawn()
             .expect("Failed to execute 'rustup' command");
