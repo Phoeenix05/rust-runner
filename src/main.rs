@@ -3,6 +3,8 @@ use clap::Parser;
 
 mod args;
 
+fn exec_command(cmd: &str, args: &[&str]) {}
+
 fn main() {
     let args = args::Arguments::parse();
     println!("{:?}", args);
